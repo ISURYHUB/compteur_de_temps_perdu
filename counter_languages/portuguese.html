@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contador de tempo perdido</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #444444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #bbbbbb;
+    padding: 2em;
+    font-size: 1.5em;
+    max-width: 90%;
+    word-break: break-word;
+  }
+
+  #timer {
+    font-weight: bold;
+    margin: 0 5px;
+    font-size: 1.2em;
+  }
+  .github-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.github-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  border-radius: 50%;
+  background-image: url('https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: pulse 2s infinite;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.github-icon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+  @media screen and (max-width: 950px) {
+    .p {
+      font-size: 0.8em;
+      padding: 1.5em;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    h1 {
+      font-size: 1.2em;
+    }
+
+    .p {
+      font-size: 0.6em;
+      padding: 1.2em;
+    }
+  }
+</style>
+
+  </head>
+  <body>
+    <audio src="music/music.mp3" autoplay="autoplay" loop="loop"></audio>
+    <h1>Contador de tempo perdido</h1>
+
+<div class="p">
+  <p>Você perdeu&nbsp;</p><p id="timer"></p><p>&nbsp;da sua vida. Parabéns!</p>
+</div>
+
+<script>
+  function formatTime(time) {
+
+if (time < 60) {
+return time + " segundo" + (time === 1 ? "" : "s");
+} else if (time < 3600) {
+var minutes = Math.floor(time / 60);
+var seconds = time % 60;
+return minutes + " minuto" + (minutes === 1 ? "" : "s") + " e " + seconds + " segundo" + (seconds === 1 ? "" : "s");
+} else if (time < 86400) {
+return Math.floor(time / 3600) + " hora" + (Math.floor(time / 3600) === 1 ? "" : "s");
+} else {
+return Math.floor(time / 86400) + " dia" + (Math.floor(time / 86400) === 1 ? "" : "s");
+}
+}
+
+  var start = Date.now();
+
+  setInterval(function() {
+    var elapsed = Math.floor((Date.now() - start) / 1000);
+    document.getElementById("timer").textContent = formatTime(elapsed);
+  }, 1000);
+</script>
+
+<a href="https://github.com/your-username/your-repository" class="github-link" target="_blank">
+  <div class="github-icon"></div>
+</a>
+
+  </body>
+</html>
